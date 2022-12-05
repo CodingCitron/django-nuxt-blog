@@ -5,7 +5,7 @@
     <header>
         <h1>LOGO</h1>
         <nav>
-
+            
         </nav>
     </header>
 </template>
