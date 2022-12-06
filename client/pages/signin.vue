@@ -3,7 +3,12 @@
 </script>
 <template>
     <div>
-        로그인
+        <div>
+            <input type="text" />
+        </div>
+        <div>
+            <input type="text" />
+        </div>
     </div>
 </template>
 <style>
