@@ -38,7 +38,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-
+  
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -49,5 +49,15 @@ export default {
         autoprefixer: {},
       },
     },
+  },
+
+  server: {
+    port: 3000,
+  },
+
+  axios: {
+    baseURL: 'http://127.0.0.1:8000/api/',
+    proxyHeaders: false,
+    credentials: false
   }
 }
