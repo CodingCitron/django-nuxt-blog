@@ -9,10 +9,10 @@
         <nav>
             <ul class="menu">
                 <li>
-                    <nuxt-link to="signin">로그인</nuxt-link>
+                    <nuxt-link to="/sign-in">로그인</nuxt-link>
                 </li>
                 <li>
-                    <nuxt-link to="signup">회원가입</nuxt-link>
+                    <nuxt-link to="/sign-up">회원가입</nuxt-link>
                 </li>
             </ul>
         </nav>

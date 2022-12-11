@@ -1,4 +1,5 @@
 export default {
+  mode: 'univarsal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'blog',
@@ -24,7 +25,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    
+    // '~/plugins/axios'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -33,12 +34,14 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxt/postcss8',
+    '@nuxtjs/composition-api/module',
     // ...
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-  
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -49,6 +52,9 @@ export default {
         autoprefixer: {},
       },
     },
+    transpile: [
+      'axios',
+    ],
   },
 
   server: {
@@ -56,8 +62,33 @@ export default {
   },
 
   axios: {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
     baseURL: 'http://127.0.0.1:8000/api/',
-    proxyHeaders: false,
-    credentials: false
+  },
+
+  auth: {
+    stategies: {
+      local: {
+        token: {
+          prefix: 'access_token',
+          property: 'access_token',
+          maxAge: 900,
+          type: 'Bearer'
+        }
+      },
+      user: {
+        property: 'user',
+        autoFetch: true
+      },
+      endpoints: {
+        signIn: { url: '/sign-in', method: 'post' },
+        signUp: { url: '/sign-up', method: 'post' },
+        user: { url: 'user', method: 'get' },
+        refresh: { url: '/token/refresh', method: 'post' }
+      }
+    }
   }
 }

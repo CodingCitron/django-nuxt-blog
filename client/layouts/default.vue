@@ -1,6 +1,6 @@
 <script setup>
-import AppHeaderVue from '../components/common/AppHeader.vue'
-import AppFooterVue from '../components/common/AppFooter.vue'
+import AppHeaderVue from '../components/AppHeader.vue'
+import AppFooterVue from '../components/AppFooter.vue'
 </script>
 <template>
     <div class="wrap">
@@ -20,8 +20,9 @@ import AppFooterVue from '../components/common/AppFooter.vue'
 }
 
 main {
-    height: 100%;
-    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     flex-basis: auto;
 }
 </style>

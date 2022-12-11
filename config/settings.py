@@ -138,4 +138,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.User'
 
 JWT_SIGNING_KEY = '상민 천재'
-JWT_ACCESS_EXPIRY = 15
+JWT_ACCESS_EXPIRY = 15 # 15 minutes expiration
+JWT_REFRESH_EXPIRY = 60 * 24

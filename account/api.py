@@ -24,12 +24,9 @@ class SignOut(Schema):
 
 @router.post(
     '/sign-in',
-    auth = None,
-    response = {
-        200: TokenSchema
-    }
+    auth = None
 )
-def sign_in(request, payload: SignIn):
+def sign_in(request, payload: SignIn, response: HttpResponse):
     obj = payload.dict()
     
     try:
@@ -41,15 +38,16 @@ def sign_in(request, payload: SignIn):
     if not passwords_match:
         raise ValidationError
     
-    # response.set_cookie(
-    #     key="test", 
-    #     value='test'
-    # # , httponly=True
-    # )
+    access = create_token({ 'username': user_model.username }, 'access')
+    refresh = create_token()
 
-    access = create_token(user_model.username)
-    print(access)
-    return 200, TokenSchema(access=access)
+    response.set_cookie(
+        key = 'refresh-token', 
+        value = refresh
+    # , httponly=True
+    )
+
+    return 200, TokenSchema(access = access)
 
 
 @router.post(
@@ -76,3 +74,15 @@ def sign_up(request, payload: SignUp):
     # User.save()
 
     return 200, { 'message': 'SUCCESS' }
+
+@router.post(
+    '/sign-out'
+)
+def sign_out(request, payload:SignOut):
+    pass
+
+@router.post(
+    '/refresh'
+)
+def refresh_token(request): 
+    pass
